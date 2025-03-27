@@ -49,7 +49,16 @@ contract CounterTest is Test {
         assertEq(counter.number(), x);
     }
 
-    function printSlot(address addr, bytes32 slot) internal view {
+    function test_Calculate_ArraySlot() public view {
+        uint256 index_ = 1;
+        uint256 tokenId_index = counter.tokenIds(index_);
+        //  uint256[] public tokenIds; // slot 3
+        bytes32 slot_tokenId_index = add_bytes32((keccak256(abi.encode(3))), bytes32(index_));
+        bytes32 value_tokenId_index = printSlot(address(counter), slot_tokenId_index);
+        assertEq(tokenId_index, uint256(value_tokenId_index));
+    }
+
+    function printSlot(address addr, bytes32 slot) internal view returns (bytes32) {
         /// Loads a storage slot from an address.
         /// function load(address target, bytes32 slot) external view returns (bytes32 data);
 
@@ -58,6 +67,7 @@ contract CounterTest is Test {
         console.logBytes32(slot);
         console.log("uint256 value:");
         console.log(uint256(value));
+        return value;
     }
 
     function calculateKeySlot(bytes32 key, bytes32 slot_map) internal pure returns (bytes32) {
@@ -70,5 +80,9 @@ contract CounterTest is Test {
 
     function addressToBytes32(address addr) internal pure returns (bytes32) {
         return bytes32(uint256(uint160(addr)));
+    }
+
+    function add_bytes32(bytes32 a, bytes32 b) internal pure returns (bytes32) {
+        return bytes32(uint256(a) + uint256(b));
     }
 }

@@ -5,11 +5,13 @@ contract Counter {
     mapping(address => uint256) public balanceOf; // slot 1
 
     mapping(string => uint256) public tokenTypes; // slot 2
+
+    uint256[] public tokenIds; // slot 3
 }
 
 ```
 
-## mapping slot
+# mapping slot
 
 对应于映射键 k 的值位于 keccak256(h(k) . p)， 其中 . 是连接符， h 是一个函数，根据键的类型应用于键。
 
@@ -35,4 +37,15 @@ string key_string = "USDT";
 
 bytes32 tokenTypes_key_slot = keccak256(abi.encodePacked(key_string, tokenTypes_slot));
 
+```
+
+# dynamic array
+
+```solidity
+// uint256[] public tokenIds; // slot 3
+
+bytes32 tokenIds_slot = 3;
+uint256 tokenIds_index = 1;
+// tokenIds_index_slot = keccak256(slot_origin) + index
+bytes32 tokenIds_index_slot =  keccak256(abi.encode(tokenIds_slot)) + tokenIds_index;
 ```
