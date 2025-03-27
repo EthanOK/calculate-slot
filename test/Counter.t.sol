@@ -27,7 +27,8 @@ contract CounterTest is Test {
         printSlot(address(counter), slot_number);
 
         bytes32 slot_balanceOf = bytes32(uint256(1));
-
+        // cast index address 0x000000000000000000000000000000000000ABcD 1
+        // 0xa565e321bb2a38869f5e62291a0467f14d8e98f50311f06944f84dac05e02ea3
         bytes32 slot_balanceOf_user = calculateKeySlot(addressToBytes32(user), slot_balanceOf);
 
         printSlot(address(counter), slot_balanceOf_user);
@@ -35,6 +36,7 @@ contract CounterTest is Test {
         // console.log("tokenTypes[USDT]: ", uint256(counter.tokenTypes("USDT")));
 
         bytes32 slot_tokenTypes = bytes32(uint256(2));
+        // cast index string USDT 2
         // 0x5b917b37580ae119971a3168e4741c39db3465a69b528cb37ad7d49de50be608
         bytes32 slot_tokenTypes_USDT = calculateStringKeySlot(USDT_NAME, slot_tokenTypes);
         printSlot(address(counter), slot_tokenTypes_USDT);
