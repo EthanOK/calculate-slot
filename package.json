@@ -9,6 +9,7 @@
   },
   "scripts": {
     "test": "forge test -vvv",
+    "fmt": "forge fmt",
     "slot_balanceOf_user": "cast index address 0x000000000000000000000000000000000000ABcD 1",
     "slot_tokenTypes_USDT": "cast index string USDT 2"
   },
