@@ -55,7 +55,9 @@ contract CounterTest is Test {
         //  uint256[] public tokenIds; // slot 3
         bytes32 slot_tokenId_index = add_bytes32((keccak256(abi.encode(3))), bytes32(index_));
         bytes32 value_tokenId_index = printSlot(address(counter), slot_tokenId_index);
+        bytes32 value_tokenId_index_  = counter.extsload(slot_tokenId_index);
         assertEq(tokenId_index, uint256(value_tokenId_index));
+        assertEq(tokenId_index, uint256(value_tokenId_index_));
     }
 
     function printSlot(address addr, bytes32 slot) internal view returns (bytes32) {

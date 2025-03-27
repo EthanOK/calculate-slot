@@ -1,7 +1,9 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.13;
 
-contract Counter {
+import {Extsload} from "./Extsload.sol";
+
+contract Counter is Extsload {
     uint256 public number; // slot 0
 
     mapping(address => uint256) public balanceOf; // slot 1
